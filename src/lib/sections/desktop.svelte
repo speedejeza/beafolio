@@ -1,5 +1,5 @@
 <script>
-    import Folder from "./folder.svelte";
+    import Folder from "../components/folder.svelte";
 </script>
 
 <div class="video-background">
@@ -12,7 +12,7 @@
 </div>
 
 <div class="desktop">
-    <Folder title="Photography" left={100} top={100} />
+    <Folder title="Photography" left={100} top={100} link="/photography" />
     <Folder title="Social Media Creation" left={400} top={450} />
     <Folder title="Production" left={800} top={150} />
     <Folder title="Design" left={1000} top={500} />

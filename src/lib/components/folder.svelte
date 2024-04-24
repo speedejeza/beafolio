@@ -1,5 +1,5 @@
 <script>
-	import Draggable from '$lib/Draggable.svelte';
+	import { draggable } from '@neodrag/svelte';
 
 	export let left = 100;
 	export let top = 100;
@@ -7,15 +7,21 @@
 	export let link = '/';
 </script>
 
-<a draggable="false" href={link}>
-	<Draggable {left} {top}>
+<div use:draggable={{ defaultPosition: { x: left, y: top }, bounds: 'parent' }}>
+	<a draggable="false" href={link}>
 		<img src="/folder.png" alt="" />
 		<label for="image"><strong>{title}</strong></label>
-	</Draggable>
-</a>
+	</a>
+</div>
 
 <style>
+	div {
+		width: max-content;
+		text-align: center;
+	}
 	a {
+		width: 100%;
+		height: 100%;
 		text-decoration: none;
 		user-select: none;
 		-webkit-user-drag: none;

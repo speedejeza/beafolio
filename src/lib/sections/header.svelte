@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Clock from './clock.svelte';
-	import Eyeroll from './eyeroll.svelte';
+	import Clock from '../components/clock.svelte';
+	import Eyeroll from '../components/eyeroll.svelte';
 </script>
 
 <header>

@@ -1,5 +1,5 @@
 <script>
-	import Desktop from '$lib/desktop/desktop.svelte';
+	import Desktop from '$lib/sections/desktop.svelte';
 </script>
 
 <Desktop />
