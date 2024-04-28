@@ -8,8 +8,8 @@
 </script>
 
 <div use:draggable={{ defaultPosition: { x: left, y: top }, bounds: 'parent' }}>
-	<a draggable="false" href={link}>
-		<img src="/folder.png" alt="" />
+	<img src="/folder.png" alt="" />
+	<a href={link}>
 		<label for="image"><strong>{title}</strong></label>
 	</a>
 </div>
@@ -22,9 +22,8 @@
 	a {
 		width: 100%;
 		height: 100%;
-		text-decoration: none;
-		user-select: none;
-		-webkit-user-drag: none;
+		/* text-decoration: none;
+		-webkit-user-drag: none; */
 	}
 	img {
 		width: 100px;
