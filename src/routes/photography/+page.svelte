@@ -2,7 +2,6 @@
 	import type { PageData } from '../$types';
 
 	export let data: PageData;
-	console.log(data.data[0].attributes);
 </script>
 
 <section class="photography">
@@ -14,8 +13,15 @@
 				<h2>{shoot.attributes.year}</h2>
 			</div>
 			<div class="gallery">
-				{#each shoot.attributes.gallery.data as image}
-					🖼️
+				{#each shoot.attributes.gallery.data as media}
+					{#if media.attributes.mime === 'video/mp4'}
+						<video playsinline autoplay muted loop>
+							<source src="{media.attributes.url}" type="video/mp4">
+						</video>
+					{:else}
+						<img src="{media.attributes.url}" alt="{media.attributes.alternativeText}">
+						
+					{/if}
 				{/each}
 			</div>
 		</div>
