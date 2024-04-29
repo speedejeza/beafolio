@@ -21,12 +21,6 @@
 </div>
 
 <style lang="scss">
-	.video-background {
-		position: relative;
-		width: 100%;
-		z-index: -1;
-	}
-
 	.desktop {
 		height: 100vh;
 		background-position: center;
