@@ -1,7 +1,25 @@
 <script lang="ts">
-	import type { PageData } from '../$types';
+	import Modal from '$lib/components/modal.svelte';
 
-	export let data: PageData;
+	export let data;
+
+	function getSrcSet(media) {
+		let srcs: string[] = [`${media.attributes.url} ${media.attributes.width}w`];
+
+		for (const [, value] of Object.entries(media.attributes.formats)) {
+			srcs.push(`${value.url} ${value.width}w`);
+		}
+
+		return srcs.join(', ');
+	}
+
+	let modalImg = '';
+	let showModal = false;
+
+	function imageClick(media) {
+		modalImg = media.attributes.url;
+		showModal = true;
+	}
 </script>
 
 <section class="photography">
@@ -16,24 +34,33 @@
 				{#each shoot.attributes.gallery.data as media}
 					{#if media.attributes.mime === 'video/mp4'}
 						<video playsinline autoplay muted loop>
-							<source src="{media.attributes.url}" type="video/mp4">
+							<source src={media.attributes.url} type={media.attributes.mime} />
 						</video>
 					{:else}
-						<img src="{media.attributes.url}" alt="{media.attributes.alternativeText}">
-						
+						<button on:click={() => imageClick(media)}>
+							<img
+								alt={media.attributes.alternativeText}
+								srcset={getSrcSet(media)}
+								sizes="(min-width: 1000px) 33vw, 96vw"
+							/>
+						</button>
 					{/if}
 				{/each}
 			</div>
 		</div>
 	{/each}
+	<Modal bind:showModal>
+		<img class="modalImage" alt="modal" src={modalImg} />
+	</Modal>
 </section>
 
-<style>
+<style lang="scss">
 	.photography {
 		display: flex;
 		flex-direction: column;
-        max-width: 80vw;
-        margin-left: 20vw;
+		justify-content: center;
+		max-width: 80vw;
+		gap: 5rem;
 	}
 
 	.photoshoot {
@@ -43,6 +70,30 @@
 
 	.gallery {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		grid-template-rows: auto;
+		grid-auto-flow: dense;
+		grid-gap: 1rem;
+		place-items: center;
+
+		img,
+		video {
+			width: 100%;
+			height: auto;
+			object-fit: contain;
+		}
+
+		button {
+			background: none;
+			border: none;
+			cursor: pointer;
+			padding: 0;
+		}
+	}
+	
+	.modalImage {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: scale-down;
 	}
 </style>

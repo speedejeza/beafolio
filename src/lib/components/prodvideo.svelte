@@ -8,7 +8,6 @@
 		playsinline
 		loop
         autoplay
-		controls
 		controlslist="nofullscreen nodownload noremoteplayback"
 		disablepictureinpicture
 		disableremoteplayback

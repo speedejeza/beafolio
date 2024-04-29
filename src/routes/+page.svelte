@@ -10,9 +10,9 @@
 	style="background-image: url({data.data.attributes.background.data.attributes.url})"
 >
 	<Folder title="Photography" link="/photography" />
-	<Folder title="Social Media Creation" link="/social-media-creation" />
+	<Folder title="Social Media Creation"  />
 	<Folder title="Production" link="/production" />
-	<Folder title="Design" link="/design" />
+	<Folder title="Design" />
 </div>
 
 <div class="about">
