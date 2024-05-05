@@ -45,7 +45,7 @@
 									srcset={getSrcSet(media)}
 									sizes="(min-width: 1000px) 33vw, 96vw"
 									class={media.attributes.width < media.attributes.height
-										? 'portrait'
+										? 'potrait'
 										: 'landscape'}
 								/>
 							</button>
@@ -87,20 +87,19 @@
 		flex-flow: column wrap;
 		gap: 1rem;
 		padding: 1rem;
+	}
+	.gallery-row {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		align-items: center;
+		// flex-basis: 1;
 
-		.gallery-row {
-			display: flex;
-			justify-content: center;
-			gap: 1rem;
-			align-items: center;
-			// flex-basis: 1;
-
-			button {
-				border: none;
-				background: none;
-				cursor: pointer;
-				padding: 0;
-			}
+		button {
+			border: none;
+			background: none;
+			cursor: pointer;
+			padding: 0;
 		}
 	}
 
@@ -121,18 +120,20 @@
 	}
 
 	.potrait {
-		width: 200px;
+		// width: 20px;
 	}
 
-	.landscape {
-		min-width: 100%;
-	}
+	// .landscape {
+	// 	width: 100vw;
+	// 	height: auto;
+	// }
 
 	img,
 	video {
-		max-height: 80vh;
+		object-fit: contain;
+		max-height: 85vh;
 		max-width: 100%;
-		// min-width: 100%;
+		width: 100vw;
 	}
 
 	.modalImage {
