@@ -839,6 +839,7 @@ export interface ApiPhotoshootPhotoshoot extends Schema.CollectionType {
     description: Attribute.String;
     gallery: Attribute.Media;
     year: Attribute.Integer & Attribute.DefaultTo<2024>;
+    row: Attribute.Component<'photography.photo-row', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

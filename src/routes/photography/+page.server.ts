@@ -3,7 +3,7 @@ import { STRAPI_URL, STRAPI_TOKEN } from "$env/static/private";
 import type { ApiPhotoshootPhotoshoot } from "$lib/types/contentTypes";
 
 export const load = async ({ params }) => {
-    const res = await fetch(`${STRAPI_URL}/api/photoshoots?populate=*`, {
+    const res = await fetch(`${STRAPI_URL}/api/photoshoots?populate[0]=row&populate[1]=row.photos`, {
         'headers': {
             'Authorization': `Bearer ${STRAPI_TOKEN}`
         }
