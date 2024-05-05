@@ -56,12 +56,12 @@
 		margin: 0;
 	}
 
-	/* Extra small devices (phones, 600px and down) */
-	@media only screen and (max-width: 600px) {
-		:global(body) {
-			font-size: 0.75rem;
-		}
-	}
+	// /* Extra small devices (phones, 600px and down) */
+	// @media only screen and (max-width: 600px) {
+	// 	:global(body) {
+	// 		font-size: 0.75rem;
+	// 	}
+	// }
 
 	/* Small devices (portrait tablets and large phones, 600px and up) */
 	@media only screen and (min-width: 600px) {

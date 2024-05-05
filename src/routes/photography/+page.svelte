@@ -24,37 +24,37 @@
 
 <section class="photography">
 	{#each data.data as shoot}
-		<div class="photoshoot">
-			<div class="attribution">
-				{shoot.attributes.title.toUpperCase()}<br />
-				{shoot.attributes.category}<br />
-				<i>{shoot.attributes.year}</i>
-			</div>
-			<div class="gallery">
-				{#each shoot.attributes.row as row}
-					<div class="gallery-row">
-						{#each row.photos.data as media}
-							{#if media.attributes.mime === 'video/mp4'}
-								<video playsinline autoplay muted loop>
-									<source src={media.attributes.url} type={media.attributes.mime} />
-								</video>
-							{:else}
-								<button on:click={() => imageClick(media)}>
-									<img
-										alt={media.attributes.alternativeText}
-										srcset={getSrcSet(media)}
-										sizes="(min-width: 1000px) 33vw, 96vw"
-										class={media.attributes.width < media.attributes.height
-											? 'portrait'
-											: 'landscape'}
-									/>
-								</button>
-							{/if}
-						{/each}
-					</div>
-				{/each}
-			</div>
+		<!-- <div class="photoshoot"> -->
+		<div class="attribution">
+			{shoot.attributes.title.toUpperCase()}<br />
+			{shoot.attributes.category}<br />
+			<i>{shoot.attributes.year}</i>
 		</div>
+		<div class="gallery">
+			{#each shoot.attributes.row as row}
+				<div class="gallery-row">
+					{#each row.photos.data as media}
+						{#if media.attributes.mime === 'video/mp4'}
+							<video playsinline autoplay muted loop>
+								<source src={media.attributes.url} type={media.attributes.mime} />
+							</video>
+						{:else}
+							<button on:click={() => imageClick(media)}>
+								<img
+									alt={media.attributes.alternativeText}
+									srcset={getSrcSet(media)}
+									sizes="(min-width: 1000px) 33vw, 96vw"
+									class={media.attributes.width < media.attributes.height
+										? 'portrait'
+										: 'landscape'}
+								/>
+							</button>
+						{/if}
+					{/each}
+				</div>
+			{/each}
+		</div>
+		<!-- </div> -->
 	{/each}
 	<Modal bind:showModal>
 		<img class="modalImage" alt="modal" src={modalImg} />
@@ -63,85 +63,78 @@
 
 <style lang="scss">
 	.photography {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 5rem;
+		display: grid;
+		grid-template-columns: min-content 1fr;
 		max-width: 100%;
-		padding-block: 1rem;
+		padding: 1.5rem 2.5rem;
 
-		.photoshoot {
+		// .photoshoot {
+		// 	display: flex;
+		// 	justify-content: space-between;
+		// 	gap: 1rem;
+		// 	padding-block: 1rem;
+		// }
+	}
+
+	.attribution {
+		border-right: 0.25rem solid black;
+		padding: 1rem 2.5rem 1rem 0;
+		min-width: 5rem;
+	}
+
+	.gallery {
+		display: flex;
+		flex-flow: column wrap;
+		gap: 1rem;
+		padding: 1rem;
+
+		.gallery-row {
 			display: flex;
-			justify-content: space-between;
+			justify-content: center;
 			gap: 1rem;
+			align-items: center;
+			// flex-basis: 1;
 
-			.attribution {
-				flex: 1 1 10%;
-				border-right: 1px solid black;
-				padding-right: 1rem;
-				min-width: 5rem;
-			}
-
-			.gallery {
-				flex: 1 1 80%;
-				display: flex;
-				flex-flow: column wrap;
-				gap: 1rem;
-
-				.gallery-row {
-					display: flex;
-					justify-content: center;
-					gap: 1rem;
-					align-items: center;
-					flex-basis: 1;
-
-					button {
-						border: none;
-						background: none;
-						cursor: pointer;
-						padding: 0;
-					}
-				}
+			button {
+				border: none;
+				background: none;
+				cursor: pointer;
+				padding: 0;
 			}
 		}
 	}
 
-	/* Extra small devices (phones, 600px and down) */
-	@media only screen and (max-width: 600px) {
+	@media only screen and (max-width: 992px) {
 		.photography {
-			padding-inline: 1rem;
+			padding: 1rem;
+			grid-template-columns: 1fr;
 		}
 		.gallery-row {
 			flex-wrap: wrap;
 		}
+		.gallery {
+			padding: 1rem 0 1rem 0;
+		}
 		.photoshoot {
 			flex-wrap: wrap;
 		}
 	}
 
-	/* Small devices (portrait tablets and large phones, 600px and up) */
-	@media only screen and (min-width: 600px) {
-		.photography {
-			padding-inline: 2.5rem;
-		}
-
-
+	.potrait {
+		width: 200px;
 	}
-
-	// .potrait {
-	//  min-width: 100%;
-	// }
 
 	.landscape {
 		min-width: 100%;
-		flex: 1 1 100%;
 	}
 
 	img,
 	video {
-		object-fit: contain;
 		max-height: 80vh;
+		max-width: 100%;
+		// min-width: 100%;
 	}
+
 	.modalImage {
 		max-width: 100%;
 		height: auto;
