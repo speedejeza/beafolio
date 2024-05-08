@@ -3,9 +3,9 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "node --env-file=.env copyUploads.js && vite dev",
-		"build": "node --env-file=.env copyUploads.js && vite build",
-		"preview": "node --env-file=.env copyUploads.js && vite preview",
+		"dev": "node copyUploads.js && vite dev",
+		"build": "node copyUploads.js && vite build",
+		"preview": "node copyUploads.js && vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
@@ -34,6 +34,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@neodrag/svelte": "^2.0.6"
+		"@neodrag/svelte": "^2.0.6",
+		"dotenv": "^16.4.5"
 	}
 }
