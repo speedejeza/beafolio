@@ -32,8 +32,6 @@
 		display: grid;
 		isolation: isolate;
 		place-items: end start;
-		// width: 100%;
-		// height: 100%;
 
 		* {
 			grid-column: 1/-1;
@@ -43,8 +41,8 @@
 
 	video {
 		width: 100%;
-		height: 100%;
 		object-fit: contain;
+		object-position: center;
 		display: block;
 	}
 
@@ -54,5 +52,22 @@
 		text-shadow: 0 0 10px black;
 		white-space: pre-line;
 		z-index: 10;
+	}
+
+	/* Extra small devices (phones, 600px and down) */
+	@media only screen and (max-width: 600px) {
+		.item {
+			min-height: calc(100vh - 3.375rem);
+		}
+		video {
+			position: absolute;
+			transform: rotate(90deg);
+			transform-origin: bottom left;
+			width: calc(100vh - 3.375rem);
+			height: 100vw;
+			margin-top: -100vw;
+			object-fit: cover;
+			z-index: -1;
+		}
 	}
 </style>

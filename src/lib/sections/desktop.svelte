@@ -28,10 +28,16 @@
 </div>
 
 <style>
+	.desktop {
+		height: var(--fullscreen-height);
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+	}
+
 	.background {
 		position: absolute;
-		width: 100%;
-		height: 100%;
+		height: var(--fullscreen-height);
 		z-index: -1;
 	}
 
@@ -41,13 +47,6 @@
 		object-position: center;
 		min-height: 100%;
 		max-width: 100%;
-	}
-
-	.desktop {
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: space-evenly;
 	}
 
 	@media only screen and (max-width: 600px) {

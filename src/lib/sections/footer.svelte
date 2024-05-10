@@ -1,20 +1,28 @@
 <footer>
 	<aside>
-		<p>Made with ❤️ by Jeremy</p>
+		<p>🤷‍♀️: What concept is it?</p>
+		<p>💁‍♂️: It's the HBS Concept</p>
+	</aside>
+	<aside>
+		<p>Made with 💜 by Jeremy</p>
 	</aside>
 </footer>
 
 <style>
 	footer {
 		display: flex;
-		justify-content: center;
+		flex-wrap: wrap;
+		justify-content: space-around;
 		align-items: center;
-		background-color: rgba(230, 125, 115, 0.339);
-		min-height: 10rem;
+		gap: 1rem;
+
+		color: white;
+		background-color: black;
+		min-height: 2.5rem;
+		padding: 1rem;
 	}
-    
+
 	p {
-		text-align: center;
 		font-family: monospace;
 	}
 </style>

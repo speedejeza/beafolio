@@ -44,6 +44,7 @@
 		position: sticky;
 		top: 0;
 		z-index: 20;
+		height: calc(var(--header-height) - 1rem); /* 1rem padding top and bottom */
 	}
 
 	a {

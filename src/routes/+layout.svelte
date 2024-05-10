@@ -19,6 +19,9 @@
 	:root {
 		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
 			'Open Sans', 'Helvetica Neue', sans-serif, 'Sans Serif', Icons;
+
+		--header-height: 3.375rem;
+		--fullscreen-height: calc(100vh - var(--header-height));
 	}
 	:global(body) {
 		margin: 0;
