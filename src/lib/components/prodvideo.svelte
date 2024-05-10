@@ -1,5 +1,8 @@
 <script>
-	export let url, title, credits, paused = true;
+	export let url,
+		title,
+		credits,
+		paused = true;
 </script>
 
 <div class="item">
@@ -7,16 +10,20 @@
 	<video
 		playsinline
 		loop
-        autoplay
+		autoplay
 		controlslist="nofullscreen nodownload noremoteplayback"
 		disablepictureinpicture
 		disableremoteplayback
 		src={url}
-        bind:paused={paused}
+		bind:paused
 	/>
 	<div class="credits">
-		<h1>{title}</h1>
-		<p>{credits}</p>
+		{#if title}
+			<h1>{title}</h1>
+		{/if}
+		{#if credits}
+			<p>{credits}</p>
+		{/if}
 	</div>
 </div>
 
@@ -24,17 +31,16 @@
 	.item {
 		display: grid;
 		isolation: isolate;
-        place-items: end start;
+		place-items: end start;
 		// width: 100%;
 		// height: 100%;
 
-        * {
-            grid-column: 1/-1;
-            grid-row: 1/-1;
-        }
+		* {
+			grid-column: 1/-1;
+			grid-row: 1/-1;
+		}
 	}
 
-    
 	video {
 		width: 100%;
 		height: 100%;
@@ -43,8 +49,8 @@
 	}
 
 	.credits {
-        pointer-events: none;
-        padding: 3rem;
+		pointer-events: none;
+		padding: 3rem;
 		text-shadow: 0 0 10px black;
 		white-space: pre-line;
 		z-index: 10;

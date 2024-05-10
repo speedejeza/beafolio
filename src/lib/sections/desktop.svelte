@@ -1,31 +1,58 @@
 <script>
-    import Folder from "../components/folder.svelte";
+	import Folder from '$lib/components/folder.svelte';
+	import { getSrcSet } from '$lib/utils';
+
+	export let background;
+	export let folders;
 </script>
 
-<div class="video-background">
-	<video playsinline autoplay muted loop>
-		<source
-			src="https://videos.pexels.com/video-files/1722882/1722882-uhd_3840_2160_25fps.mp4"
-			type="video/mp4"
-		/>
-	</video>
-</div>
-
 <div class="desktop">
-    <Folder title="Photography" left={100} top={100} link="/photography" />
-    <Folder title="Social Media Creation" left={400} top={450} />
-    <Folder title="Production" left={800} top={150} />
-    <Folder title="Design" left={1000} top={500} />
+	<div class="background">
+		<!-- Must support image and video formats -->
+		{#if background.mime === 'video/mp4'}
+			<video playsinline autoplay muted loop>
+				<source src={background.url} type={background.mime} />
+			</video>
+		{:else}
+			<img src={background.url} alt="background" />
+			alt={background.alternativeText}
+			srcset={getSrcSet(background)}
+			sizes="(min-width: 1000px) 33vw, 96vw"
+		{/if}
+	</div>
+
+	<!-- Create Folders -->
+	{#each folders as folder}
+		<Folder title={folder.name} link={folder.link} />
+	{/each}
 </div>
 
 <style>
-	video {
+	.background {
 		position: absolute;
 		width: 100%;
+		height: 100%;
 		z-index: -1;
 	}
 
-    .desktop {
-        height: 100vh;
-    }
+	img,
+	video {
+		object-fit: cover;
+		object-position: center;
+		min-height: 100%;
+		max-width: 100%;
+	}
+
+	.desktop {
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.desktop {
+			flex-direction: column;
+		}
+	}
 </style>

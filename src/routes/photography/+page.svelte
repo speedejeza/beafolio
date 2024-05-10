@@ -1,30 +1,21 @@
 <script lang="ts">
 	import Modal from '$lib/components/modal.svelte';
+	import { getSrcSet } from '$lib/utils';
+	import type { PageData } from '../$types';
 
-	export let data;
-
-	function getSrcSet(media) {
-		let srcs: string[] = [`${media.attributes.url} ${media.attributes.width}w`];
-
-		for (const [, value] of Object.entries(media.attributes.formats)) {
-			srcs.push(`${value.url} ${value.width}w`);
-		}
-
-		return srcs.join(', ');
-	}
+	export let data: PageData;
 
 	let modalImg = '';
 	let showModal = false;
 
-	function imageClick(media) {
-		modalImg = media.attributes.url;
+	function imageClick(mediaAttributes: { url: string; }) {
+		modalImg = mediaAttributes.url;
 		showModal = true;
 	}
 </script>
 
 <section class="photography">
 	{#each data.data as shoot}
-		<!-- <div class="photoshoot"> -->
 		<div class="attribution">
 			{shoot.attributes.title.toUpperCase()}<br />
 			{shoot.attributes.category}<br />
@@ -39,14 +30,11 @@
 								<source src={media.attributes.url} type={media.attributes.mime} />
 							</video>
 						{:else}
-							<button on:click={() => imageClick(media)}>
+							<button on:click={() => imageClick(media.attributes)}>
 								<img
 									alt={media.attributes.alternativeText}
-									srcset={getSrcSet(media)}
+									srcset={getSrcSet(media.attributes)}
 									sizes="(min-width: 1000px) 33vw, 96vw"
-									class={media.attributes.width < media.attributes.height
-										? 'potrait'
-										: 'landscape'}
 								/>
 							</button>
 						{/if}
@@ -54,7 +42,6 @@
 				</div>
 			{/each}
 		</div>
-		<!-- </div> -->
 	{/each}
 	<Modal bind:showModal>
 		<img class="modalImage" alt="modal" src={modalImg} />
@@ -67,13 +54,6 @@
 		grid-template-columns: min-content 1fr;
 		max-width: 100%;
 		padding: 1.5rem 2.5rem;
-
-		// .photoshoot {
-		// 	display: flex;
-		// 	justify-content: space-between;
-		// 	gap: 1rem;
-		// 	padding-block: 1rem;
-		// }
 	}
 
 	.attribution {
@@ -118,15 +98,6 @@
 			flex-wrap: wrap;
 		}
 	}
-
-	.potrait {
-		// width: 20px;
-	}
-
-	// .landscape {
-	// 	width: 100vw;
-	// 	height: auto;
-	// }
 
 	img,
 	video {

@@ -13,7 +13,7 @@
 		videoPaused[0] = false;
 	});
 
-	function pageChange(event) {
+	function pageChange(event: { detail: number; }) {
 		videoPaused = videoPaused.map((_, i) => i != event.detail);
 	}
 </script>

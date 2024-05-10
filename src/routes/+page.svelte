@@ -1,33 +1,26 @@
-<script lang="ts">
-	import Folder from '$lib/components/folder.svelte';
-	import type { PageData } from './$types';
+<script>
+	import Desktop from '$lib/sections/desktop.svelte';
 
-	export let data: PageData;
+	export let data;
+	let background = data.data.attributes.background.data.attributes;
+	let folders = data.data.attributes.folders;
+	let about = data.data.attributes.about;
 </script>
 
-<div
-	class="desktop"
-	style="background-image: url({data.data.attributes.background.data.attributes.url})"
->
-	<Folder title="Photography" link="/photography" />
-	<Folder title="Social Media Creation"  />
-	<Folder title="Production" link="/production" />
-	<Folder title="Design" />
-</div>
+<svelte:head>
+	<title>Home</title>
+</svelte:head>
 
-<div class="about">
-	<h1 class:rotate={data.data.attributes.titleSpin}>{data.data.attributes.title}</h1>
-	<p>{@html data.data.attributes.about}</p>
-</div>
+<Desktop {background} {folders} />
+
+{#if about}
+	<div class="about">
+		<h1 class:rotate={about.titleSpin}>{about.title}</h1>
+		<p>{@html about.content}</p>
+	</div>
+{/if}
 
 <style lang="scss">
-	.desktop {
-		height: 100vh;
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-
 	.about {
 		padding: 2rem;
 
