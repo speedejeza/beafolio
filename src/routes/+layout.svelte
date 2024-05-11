@@ -3,6 +3,7 @@
 	import Footer from '$lib/sections/footer.svelte';
 
 	export let data;
+	console.log(data);
 	let profile = data.data.attributes;
 	let socials = data.data.attributes.socials;
 </script>
