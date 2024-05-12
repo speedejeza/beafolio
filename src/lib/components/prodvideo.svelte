@@ -2,20 +2,47 @@
 	export let url,
 		title,
 		credits,
-		paused = true;
+		paused = true,
+		index;
+
+	/**
+	 * @type {HTMLVideoElement}
+	 */
+	let video;
 </script>
 
 <div class="item">
+	<!-- Add play button at center of video -->
+	{#if index == 0}
+		<button
+			class="play-button"
+			on:click={(e) => {
+				video.play();
+				e.currentTarget.remove();
+			}}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="white"
+				width="96px"
+				height="96px"
+			>
+				<path d="M8 5v14l11-7z" />
+			</svg>
+		</button>
+	{/if}
 	<!-- svelte-ignore a11y-media-has-caption -->
 	<video
 		playsinline
 		loop
-		autoplay
+		preload={index == 0 ? 'auto' : 'none'}
 		controlslist="nofullscreen nodownload noremoteplayback"
 		disablepictureinpicture
 		disableremoteplayback
 		src={url}
 		bind:paused
+		bind:this={video}
 	/>
 	<div class="credits">
 		{#if title}
@@ -69,5 +96,16 @@
 			object-fit: cover;
 			z-index: -1;
 		}
+	}
+
+	.play-button {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: none;
+		border: none;
+		cursor: pointer;
+		z-index: 10;
 	}
 </style>

@@ -34,7 +34,10 @@
 								<img
 									alt={media.attributes.alternativeText}
 									srcset={getSrcSet(media.attributes)}
-									sizes="(min-width: 1000px) 33vw, 96vw"
+									sizes={media.attributes.width < media.attributes.height
+										? "(max-width: 992px) 96vw, 33vw" /* portrait | landscape ↓ */
+										: "(max-width: 992px) 96vw, 66vw"
+									} 
 								/>
 							</button>
 						{/if}
