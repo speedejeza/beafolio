@@ -45,4 +45,9 @@
 		color: white;
 		background-color: black;
 	}
+
+	swiper-container::part(button-prev),
+	swiper-container::part(button-next) {
+		color: white;
+	}
 </style>

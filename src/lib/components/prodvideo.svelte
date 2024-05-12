@@ -102,6 +102,10 @@
 			object-fit: cover;
 			z-index: -1;
 		}
+		.credits > h1 {
+			font-size: 1.625rem;
+			margin: 0;
+		}
 	}
 
 	.play-button {
