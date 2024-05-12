@@ -2,12 +2,10 @@
 	import { register } from 'swiper/element/bundle';
 	import Prodvideo from '$lib/components/prodvideo.svelte';
 	import type { PageData } from '../$types';
-	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
 	let videoPaused: boolean[] = Array<boolean>(data.data.length).fill(true);
-	videoPaused[0] = false;
 
 	register();
 

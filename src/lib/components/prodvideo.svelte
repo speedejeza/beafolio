@@ -9,16 +9,22 @@
 	 * @type {HTMLVideoElement}
 	 */
 	let video;
+	let displayPlay = true;
+
+	// Run this code when the video is paused only once
+	$: if (!paused) {
+		displayPlay = false;
+	}
 </script>
 
 <div class="item">
 	<!-- Add play button at center of video -->
-	{#if index == 0}
+	{#if index == 0 && displayPlay}
 		<button
 			class="play-button"
 			on:click={(e) => {
 				video.play();
-				e.currentTarget.remove();
+				displayPlay = false;
 			}}
 		>
 			<svg
