@@ -24,7 +24,6 @@
 
 <style>
 	time {
-		min-width: 8ch;
 		display: inline-block;
 	}
 </style>

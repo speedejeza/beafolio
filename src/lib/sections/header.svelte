@@ -19,16 +19,18 @@
 		</div>
 		<div class="nav-right">
 			<div class="socials">
-				{#each socials as social}
-					<a href={social.link} target="_blank" rel="noreferrer">
-						<img
-							src={social.logo.data.attributes.url}
-							alt={social.logo.data.attributes.alternativeText}
-							width="25em"
-							height="25em"
-						/>
-					</a>
-				{/each}
+				{#if socials.length !== 0}
+					{#each socials as social}
+						<a href={social.link} target="_blank" rel="noreferrer">
+							<img
+								src={social.logo.data.attributes.url}
+								alt={social.logo.data.attributes.alternativeText}
+								width="25em"
+								height="25em"
+							/>
+						</a>
+					{/each}
+				{/if}
 			</div>
 			<Clock />
 		</div>
@@ -40,7 +42,7 @@
 		/* background-color: rgb(230, 124, 115); */
 		background-color: black;
 		color: white;
-		padding: 0.5rem;
+		padding: 0.5rem 1rem;
 		position: sticky;
 		top: 0;
 		z-index: 20;
@@ -90,8 +92,14 @@
 
 	/* Extra small devices (phones, 600px and down) */
 	@media only screen and (max-width: 600px) {
+		.nav-left > a {
+			gap: 0.5rem;
+		}
 		.nav-center {
 			display: none;
+		}
+		.nav-right {
+			flex: 0;
 		}
 	}
 </style>
