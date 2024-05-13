@@ -8,7 +8,7 @@
 	let modalImg = '';
 	let showModal = false;
 
-	function imageClick(mediaAttributes: { url: string; }) {
+	function imageClick(mediaAttributes: { url: string }) {
 		modalImg = mediaAttributes.url;
 		showModal = true;
 	}
@@ -17,9 +17,11 @@
 <section class="photography">
 	{#each data.data as shoot}
 		<div class="attribution">
-			{shoot.attributes.title.toUpperCase()}<br />
-			{shoot.attributes.category}<br />
-			<i>{shoot.attributes.year}</i>
+			<p class="title">{shoot.attributes.title.toUpperCase()}</p>
+			<p class="subtitle">
+				{shoot.attributes.category}<br />
+				<i>{shoot.attributes.year}</i>
+			</p>
 		</div>
 		<div class="gallery">
 			{#each shoot.attributes.row as row}
@@ -35,9 +37,8 @@
 									alt={media.attributes.alternativeText}
 									srcset={getSrcSet(media.attributes)}
 									sizes={media.attributes.width < media.attributes.height
-										? "(max-width: 992px) 96vw, 33vw" /* portrait | landscape ↓ */
-										: "(max-width: 992px) 96vw, 66vw"
-									} 
+										? '(max-width: 992px) 96vw, 33vw' /* portrait | landscape ↓ */
+										: '(max-width: 992px) 96vw, 66vw'}
 								/>
 							</button>
 						{/if}
@@ -52,17 +53,35 @@
 </section>
 
 <style lang="scss">
+	@font-face {
+		font-family: 'Montserrat', sans-serif;
+		font-style: normal;
+		font-weight: 400;
+		src: url('fonts/Montserrat-VariableFont_wght.ttf');
+	}
+
 	.photography {
 		display: grid;
 		grid-template-columns: min-content 1fr;
 		max-width: 100%;
 		padding: 1.5rem 2.5rem;
+		font-family: 'Montserrat', sans-serif;
 	}
 
 	.attribution {
 		border-right: 0.25rem solid black;
 		padding: 1rem 2.5rem 1rem 0;
 		min-width: 5rem;
+
+		.title {
+			font-size: 1.25em;
+			margin: 1rem 0 0.5rem 0;
+		}
+
+		.subtitle {
+			font-size: 1em;
+			margin: 0;
+		}
 	}
 
 	.gallery {
@@ -76,7 +95,6 @@
 		justify-content: center;
 		gap: 1rem;
 		align-items: center;
-		// flex-basis: 1;
 
 		button {
 			border: none;
@@ -96,9 +114,6 @@
 		}
 		.gallery {
 			padding: 1rem 0 1rem 0;
-		}
-		.photoshoot {
-			flex-wrap: wrap;
 		}
 	}
 
