@@ -14,10 +14,10 @@
 				<source src={background.url} type={background.mime} />
 			</video>
 		{:else}
-			<img src={background.url} alt="background" />
-			alt={background.alternativeText}
-			srcset={getSrcSet(background)}
-			sizes="(min-width: 1000px) 33vw, 96vw"
+			<img
+				src={background.url}
+				alt={background.alternativeText}
+			/>
 		{/if}
 	</div>
 

@@ -23,6 +23,7 @@
 <style lang="scss">
 	.about {
 		padding: 2rem;
+		background-color: white;
 
 		h1 {
 			font-family: 'Arizona Serif Variable';
